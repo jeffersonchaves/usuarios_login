@@ -10,11 +10,19 @@
 
     //conectar ao banco
     $host       = "localhost";
-    $db         = "usuario_acl";
+    $db         = "usuario_alc";
     $charset    = "utf8";
     $db_usuario = "root";
     $db_senha   = "root"; #bancodedados
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-    $connection = new PDO($dsn, $db_usuario, $db_senha);
+
+    try {
+        $connection = new PDO($dsn, $db_usuario, $db_senha);
+        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    } catch(PDOException $e){
+        print $e->getMessage();
+    }
+
     
